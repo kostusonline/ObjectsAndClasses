@@ -2,23 +2,33 @@
 // Домашнее задание по теме "Объекты и классы"
 // SkyPro
 
-import java.io.PrintWriter;
-import java.nio.charset.Charset;
-import java.text.DecimalFormat;
-
 public class Main {
-    public static final String DIVIDER = " -------------------------------------";
-    public static final DecimalFormat CURRENCY_FORMAT = new DecimalFormat("#,###.###");
+    public static void main(String[] args) {
+        final Author[] authors = new Author[2];
+        authors[0] = new Author("Эрнест", "Хемингуэй");
+        authors[1] = new Author("Фёдор", "Достоевский");
 
-    private static PrintWriter out;
+        final Book[] books = new Book[2];
+        books[0] = new Book("Прощай, оружие!", authors[0], 1936);
+        books[1] = new Book("Записки из мёртвого дома", authors[1], 1862); // первое издание
 
-    private static void init() {
-        var charset = System.out.charset();
-        System.out.println("[charset = " + charset + "]");
-        out = new PrintWriter(System.out, true, charset);
+        printBooks(books);
+
+        books[1].setYearOfPublication(1865); // третье издание
+        printBooks(books);
     }
 
-    public static void main(String[] args) {
-        init();
+    private static void printBooks(Book[] books) {
+        if (books == null) {
+            return;
+        }
+
+        for (var book : books) {
+            if (book == null) {
+                continue;
+            }
+            System.out.println(book.getAuthor().getFirstName() + " " + book.getAuthor().getLastName() + ": " +
+                    "\"" + book.getName() + "\", " + book.getYearOfPublication());
+        }
     }
 }
