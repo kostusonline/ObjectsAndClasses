@@ -33,7 +33,7 @@ public class Author {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o){
+        if (this == o) {
             return true;
         }
         if (o == null || getClass() != o.getClass()) {
@@ -41,16 +41,16 @@ public class Author {
         }
 
         Author that = (Author) o;
-        if (!firstName.equals(that.firstName)) {
+        if (!Objects.equals(firstName, that.firstName)) {
             return false;
         }
 
-        return lastName.equals(that.lastName);
+        return Objects.equals(lastName, that.lastName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, super.hashCode());
+        return Objects.hash(firstName, lastName);
     }
 
     @Override

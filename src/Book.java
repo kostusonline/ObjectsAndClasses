@@ -22,7 +22,7 @@ public class Book {
 
     public Book(String title, Author author, int yearOfPublication) {
         if (title == null || author == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Отсутствует заголовок или автор");
         }
 
         this.title = title;
@@ -57,15 +57,16 @@ public class Book {
 
         Book that = (Book) o;
         return yearOfPublication == that.yearOfPublication &&
-                title.equals(that.title) &&
-                author.equals(that.author);
+                Objects.equals(title, that.title) &&
+                Objects.equals(author, that.author);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(yearOfPublication, title, super.hashCode());
+        return Objects.hash(yearOfPublication, title);
     }
 
+    @Override
     public String toString() {
         return getAuthor() + ": " + "\"" + getTitle() + "\", " + getYearOfPublication();
     }
