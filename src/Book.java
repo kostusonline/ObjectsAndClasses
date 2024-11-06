@@ -1,5 +1,5 @@
 // Терских Константин, kostus.online.1974@yandex.ru, 2024
-// Домашнее задание по теме "Объекты и классы"
+// Домашнее задание по теме "Методы объектов"
 // SkyPro
 
 // ДЛЯ ПРОВЕРЯЮЩЕГО - КОПИПАСТ ИЗ ТЕКСТА ЗАДАНИЯ:
@@ -13,23 +13,25 @@
 // Создайте сеттер для поля «Год публикации» у книги.
 // https://my.sky.pro/student-cabinet/stream-lesson/145816/homework-requirements
 
+import java.util.Objects;
+
 public class Book {
-    private final String name;
+    private final String title;
     private final Author author;
     private int yearOfPublication;
 
-    public Book(String name, Author author, int yearOfPublication) {
-        if (name == null || author == null) {
-            throw new IllegalArgumentException();
+    public Book(String title, Author author, int yearOfPublication) {
+        if (title == null || author == null) {
+            throw new IllegalArgumentException("Отсутствует заголовок или автор");
         }
 
-        this.name = name;
+        this.title = title;
         this.author = author;
         this.yearOfPublication = yearOfPublication;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
     public Author getAuthor() {
@@ -42,5 +44,30 @@ public class Book {
 
     public void setYearOfPublication(int yearOfPublication) {
         this.yearOfPublication = yearOfPublication;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Book that = (Book) o;
+        return yearOfPublication == that.yearOfPublication &&
+                Objects.equals(title, that.title) &&
+                Objects.equals(author, that.author);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(yearOfPublication, title);
+    }
+
+    @Override
+    public String toString() {
+        return getAuthor() + ": " + "\"" + getTitle() + "\", " + getYearOfPublication();
     }
 }

@@ -1,5 +1,5 @@
 // Терских Константин, kostus.online.1974@yandex.ru, 2024
-// Домашнее задание по теме "Объекты и классы"
+// Домашнее задание по теме "Методы объектов"
 // SkyPro
 
 // ДЛЯ ПРОВЕРЯЮЩЕГО - КОПИПАСТ ИЗ ТЕКСТА ЗАДАНИЯ:
@@ -7,6 +7,8 @@
 // Напишите конструкторы для ... классов, заполняющие все поля.
 // Создайте геттеры для всех полей автора ...
 // https://my.sky.pro/student-cabinet/stream-lesson/145816/homework-requirements
+
+import java.util.Objects;
 
 public class Author {
     private final String firstName;
@@ -27,5 +29,32 @@ public class Author {
 
     public String getLastName() {
         return lastName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Author that = (Author) o;
+        if (!Objects.equals(firstName, that.firstName)) {
+            return false;
+        }
+
+        return Objects.equals(lastName, that.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName);
+    }
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
     }
 }

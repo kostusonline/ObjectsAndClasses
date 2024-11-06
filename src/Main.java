@@ -1,5 +1,5 @@
 // Терских Константин, kostus.online.1974@yandex.ru, 2024
-// Домашнее задание по теме "Объекты и классы"
+// Домашнее задание по теме "Методы объектов"
 // SkyPro
 
 public class Main {
@@ -27,8 +27,7 @@ public class Main {
             if (book == null) {
                 continue;
             }
-            System.out.println(book.getAuthor().getFirstName() + " " + book.getAuthor().getLastName() + ": " +
-                    "\"" + book.getName() + "\", " + book.getYearOfPublication());
+            System.out.println(book);
         }
     }
 }
